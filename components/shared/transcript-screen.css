@@ -1,0 +1,92 @@
+/* TranscriptScreen: call list + conversation, built on FlowScreen's frame (fs-root, fs-bar, fs-toolbar). */
+.ts-list {
+  flex: none;
+  width: 24cqw;
+  padding: 2.2cqw 1.6cqw;
+  border-right: 1px solid var(--line-night);
+  background: color-mix(in srgb, var(--night-2) 56%, #000);
+  display: flex;
+  flex-direction: column;
+  gap: 0.7cqw;
+  overflow: hidden;
+}
+.ts-call {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1cqw;
+  padding: 1cqw 1.1cqw;
+  border-radius: 0.8cqw;
+  border: 1px solid transparent;
+  font-size: 1.35cqw;
+  color: var(--on-night-2);
+  white-space: nowrap;
+}
+.ts-call[data-active] {
+  color: var(--on-night);
+  border-color: color-mix(in srgb, var(--violet-bright) 45%, transparent);
+  background: color-mix(in srgb, var(--violet-bright) 10%, transparent);
+}
+.ts-call-t {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ts-call-m {
+  flex: none;
+  font-variant-numeric: tabular-nums;
+  color: var(--on-night-3);
+}
+
+.ts-chat {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.ts-lines {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6cqw;
+  padding: 2.4cqw 2.6cqw;
+  overflow: hidden;
+}
+.ts-line {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5cqw;
+  max-width: 78%;
+}
+.ts-line[data-who="caller"] {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+.ts-who {
+  font-size: 0.95cqw;
+  font-weight: 620;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--on-night-3);
+}
+.ts-line[data-who="agent"] .ts-who {
+  color: var(--violet-bright);
+}
+.ts-text {
+  margin: 0;
+  font-size: 1.6cqw;
+  line-height: 1.35;
+  padding: 1.2cqw 1.6cqw;
+  border-radius: 1.2cqw;
+  color: var(--on-night);
+  background: color-mix(in srgb, var(--night-2) 80%, var(--night));
+  border: 1px solid var(--line-night);
+}
+.ts-line[data-who="agent"] .ts-text {
+  border-bottom-left-radius: 0.3cqw;
+}
+.ts-line[data-who="caller"] .ts-text {
+  border-bottom-right-radius: 0.3cqw;
+  background: color-mix(in srgb, var(--violet) 32%, var(--night));
+  border-color: color-mix(in srgb, var(--violet-bright) 35%, transparent);
+}

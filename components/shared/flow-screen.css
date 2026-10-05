@@ -1,0 +1,524 @@
+/* FlowScreen: a product-like workflow screen that scales with its container (container query units). */
+.fs-root {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  container-type: size;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--night-2) 49%, #000);
+  color: var(--on-night);
+  font-family: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.25;
+  user-select: none;
+}
+.fs-frame {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top bar */
+.fs-bar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 1.4cqw;
+  height: 7.5cqh;
+  min-height: 0;
+  padding: 0 2.2cqw;
+  border-bottom: 1px solid var(--line-night);
+  background: color-mix(in srgb, var(--night-2) 63%, #000);
+}
+.fs-logo {
+  width: 2.6cqw;
+  height: 2.6cqw;
+  border-radius: 0.6cqw;
+  background: var(--violet);
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+.fs-logo::after {
+  content: "";
+  width: 1cqw;
+  height: 1cqw;
+  border-radius: 9999px;
+  border: 0.25cqw solid var(--on-violet);
+}
+.fs-name {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 640;
+  font-size: 1.55cqw;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+.fs-crumb {
+  flex: 0 100 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1.25cqw;
+  color: var(--on-night-3);
+  white-space: nowrap;
+}
+.fs-spacer {
+  flex: 1;
+}
+.fs-status {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 0.8cqw;
+  font-size: 1.1cqw;
+  font-weight: 620;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--on-night-2);
+  white-space: nowrap;
+  padding: 0.5cqw 1.1cqw;
+  border: 1px solid var(--line-night);
+  border-radius: 9999px;
+}
+.fs-dot {
+  flex: none;
+  width: 0.9cqw;
+  height: 0.9cqw;
+  border-radius: 9999px;
+  background: var(--live);
+  box-shadow: 0 0 0 0.35cqw color-mix(in srgb, var(--live) 22%, transparent);
+  animation: fs-lamp 2.4s ease-in-out infinite;
+}
+.fs-dot[data-state="build"] {
+  background: var(--violet-bright);
+  box-shadow: 0 0 0 0.35cqw color-mix(in srgb, var(--violet-bright) 22%, transparent);
+  animation-name: fs-lamp-amber;
+}
+@keyframes fs-lamp {
+  0%,
+  to {
+    box-shadow: 0 0 0 0.35cqw color-mix(in srgb, var(--live) 22%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 0.7cqw color-mix(in srgb, var(--live) 10%, transparent);
+  }
+}
+@keyframes fs-lamp-amber {
+  0%,
+  to {
+    box-shadow: 0 0 0 0.35cqw color-mix(in srgb, var(--violet-bright) 22%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 0.7cqw color-mix(in srgb, var(--violet-bright) 10%, transparent);
+  }
+}
+
+/* Body: sidebar + canvas */
+.fs-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+.fs-side {
+  flex: none;
+  width: 21cqw;
+  padding: 2.2cqw 1.6cqw;
+  border-right: 1px solid var(--line-night);
+  background: color-mix(in srgb, var(--night-2) 56%, #000);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6cqw;
+  overflow: hidden;
+}
+.fs-side-label {
+  font-size: 0.95cqw;
+  font-weight: 620;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--on-night-3);
+  margin: 0.4cqw 0 0.3cqw 0.6cqw;
+}
+.fs-side-gap {
+  height: 1.4cqw;
+  flex: none;
+}
+.fs-side-item {
+  display: flex;
+  align-items: center;
+  gap: 0.9cqw;
+  padding: 0.75cqw 0.9cqw;
+  border-radius: 0.7cqw;
+  font-size: 1.2cqw;
+  color: var(--on-night-2);
+  white-space: nowrap;
+  overflow: hidden;
+}
+.fs-side-item span:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.fs-side-item[data-active] {
+  background: var(--night-2);
+  color: var(--on-night);
+  box-shadow: inset 0.25cqw 0 0 var(--violet-bright);
+}
+.fs-side-idx {
+  font-variant-numeric: tabular-nums;
+  font-size: 1cqw;
+  color: var(--on-night-3);
+  flex: none;
+}
+.fs-chip-sq {
+  width: 1.1cqw;
+  height: 1.1cqw;
+  border-radius: 0.3cqw;
+  border: 1px solid var(--line-night);
+  background: color-mix(in srgb, var(--night-2) 87%, #000);
+  flex: none;
+}
+
+.fs-canvas {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: color-mix(in srgb, var(--night-2) 49%, #000);
+  background-image: radial-gradient(circle, color-mix(in srgb, var(--on-night) 12%, transparent) 0.11cqw, transparent 0.13cqw);
+  background-size: 2.2cqw 2.2cqw;
+  background-position: 1.1cqw 1.1cqw;
+}
+.fs-toolbar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1cqw;
+  padding: 2cqw 2.6cqw 0;
+  font-size: 1.1cqw;
+  color: var(--on-night-3);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 620;
+  white-space: nowrap;
+}
+.fs-toolbar b {
+  color: var(--on-night);
+  font-weight: 620;
+}
+
+/* Pipeline */
+.fs-flow {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  align-content: center;
+  align-items: stretch;
+  column-gap: var(--fs-gap);
+  padding: 0 2.6cqw;
+  --fs-gap: 2.6cqw;
+}
+.fs-node {
+  position: relative;
+  box-sizing: border-box;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.6cqw 1.4cqw 1.7cqw;
+  border-radius: 1cqw;
+  background: color-mix(in srgb, var(--night-2) 80%, #000);
+  border: 1px solid color-mix(in srgb, var(--on-night) 12%, transparent);
+  box-shadow: 0 1.2cqw 2.4cqw -1.4cqw #000000b3;
+  animation: fs-node-in 0.7s var(--ease-exit) both;
+}
+.fs-node[data-first] {
+  border-color: color-mix(in srgb, var(--violet-bright) 45%, transparent);
+}
+.fs-node[data-last] {
+  border-color: color-mix(in srgb, var(--live) 50%, transparent);
+}
+@keyframes fs-node-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.fs-node-head {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6cqw;
+  margin-bottom: 0.9cqw;
+}
+.fs-icon {
+  width: 2.6cqw;
+  height: 2.6cqw;
+  border-radius: 0.65cqw;
+  display: grid;
+  place-items: center;
+  background: color-mix(in srgb, var(--violet-bright) 15%, transparent);
+  color: var(--violet-bright);
+  flex: none;
+}
+.fs-node[data-last] .fs-icon {
+  background: color-mix(in srgb, var(--live) 20%, transparent);
+  color: color-mix(in srgb, var(--live) 60%, var(--on-night));
+}
+.fs-icon svg {
+  width: 60%;
+  height: 60%;
+}
+.fs-idx {
+  font-size: 1.05cqw;
+  font-weight: 620;
+  letter-spacing: 0.12em;
+  color: var(--on-night-3);
+  font-variant-numeric: tabular-nums;
+}
+.fs-label {
+  margin-bottom: 0.8cqw;
+  font-size: 1.6cqw;
+  font-weight: 620;
+  letter-spacing: -0.005em;
+  color: var(--on-night);
+  overflow-wrap: break-word;
+  hyphens: auto;
+  text-wrap: balance;
+}
+.fs-tool {
+  margin-top: auto;
+  display: inline-block;
+  box-sizing: border-box;
+  max-width: 100%;
+  font-size: 1.05cqw;
+  font-weight: 620;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--on-night-2);
+  padding: 0.3cqw 0.7cqw;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--on-night) 6%, transparent);
+  border: 1px solid var(--line-night);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Ports + connector to the next node */
+.fs-node::before {
+  content: "";
+  position: absolute;
+  left: -0.5cqw;
+  top: 50%;
+  width: 0.9cqw;
+  height: 0.9cqw;
+  margin-top: -0.45cqw;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--night-2) 49%, #000);
+  border: 0.2cqw solid color-mix(in srgb, var(--on-night) 35%, transparent);
+}
+.fs-node[data-first]::before {
+  display: none;
+}
+.fs-link {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  width: var(--fs-gap);
+  height: 0.2cqw;
+  margin-top: -0.1cqw;
+  background: color-mix(in srgb, var(--violet-bright) 40%, transparent);
+  overflow: visible;
+}
+.fs-link::after {
+  --fs-pulse: 0.9cqw;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: var(--fs-pulse);
+  height: var(--fs-pulse);
+  margin-top: calc(var(--fs-pulse) / -2);
+  border-radius: 9999px;
+  background: var(--violet-bright);
+  box-shadow: 0 0 1.2cqw var(--violet-bright);
+  animation: fs-pulse 2.8s var(--ease-exit) infinite;
+  animation-delay: var(--fs-delay, 0s);
+  opacity: 0;
+}
+/* .fs-link is exactly var(--fs-gap) wide, so the dot travels var(--fs-gap) minus its own size (composited). */
+@keyframes fs-pulse {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  45% {
+    transform: translateX(calc(var(--fs-gap) - var(--fs-pulse)));
+    opacity: 1;
+  }
+  55%,
+  to {
+    transform: translateX(calc(var(--fs-gap) - var(--fs-pulse)));
+    opacity: 0;
+  }
+}
+
+/* Result / footer strip */
+.fs-foot {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 2cqw;
+  margin: 0 2.6cqw 2.4cqw;
+  padding: 1.4cqw 1.8cqw;
+  border-radius: 1cqw;
+  background: color-mix(in srgb, color-mix(in srgb, var(--night-2) 69%, #000) 90%, transparent);
+  border: 1px solid var(--line-night);
+}
+.fs-foot-k {
+  font-size: 0.95cqw;
+  font-weight: 620;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--on-night-3);
+  white-space: nowrap;
+}
+.fs-foot-v {
+  font-size: 2.6cqw;
+  font-weight: 640;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--violet-bright);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.fs-foot-l {
+  font-size: 1.25cqw;
+  color: var(--on-night-2);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Compact variant: no sidebar, everything scaled up relative to the width */
+.fs-root[data-variant="sm"] .fs-bar {
+  height: 13cqh;
+  padding: 0 4cqw;
+  gap: 2.4cqw;
+}
+.fs-root[data-variant="sm"] .fs-logo {
+  width: 4.6cqw;
+  height: 4.6cqw;
+  border-radius: 1.1cqw;
+}
+.fs-root[data-variant="sm"] .fs-logo::after {
+  width: 1.8cqw;
+  height: 1.8cqw;
+  border-width: 0.45cqw;
+}
+.fs-root[data-variant="sm"] .fs-name {
+  font-size: 3.2cqw;
+}
+.fs-root[data-variant="sm"] .fs-crumb {
+  display: none;
+}
+.fs-root[data-variant="sm"] .fs-status {
+  font-size: 2.2cqw;
+  padding: 0.9cqw 2cqw;
+  gap: 1.4cqw;
+}
+.fs-root[data-variant="sm"] .fs-dot {
+  width: 1.6cqw;
+  height: 1.6cqw;
+}
+.fs-root[data-variant="sm"] .fs-flow {
+  --fs-gap: 3cqw;
+  padding: 0 4cqw;
+}
+.fs-root[data-variant="sm"] .fs-node {
+  padding: 2cqw 1.8cqw 2.2cqw;
+  border-radius: 1.8cqw;
+}
+.fs-root[data-variant="sm"] .fs-node::before {
+  width: 1.4cqw;
+  height: 1.4cqw;
+  margin-top: -0.7cqw;
+  left: -0.8cqw;
+}
+.fs-root[data-variant="sm"] .fs-node-head {
+  margin-bottom: 1.4cqw;
+}
+.fs-root[data-variant="sm"] .fs-icon {
+  width: 4cqw;
+  height: 4cqw;
+  border-radius: 1cqw;
+}
+.fs-root[data-variant="sm"] .fs-idx {
+  font-size: 1.8cqw;
+}
+.fs-root[data-variant="sm"] .fs-label {
+  font-size: 2.5cqw;
+}
+.fs-root[data-variant="sm"] .fs-tool {
+  display: none;
+}
+.fs-root[data-variant="sm"] .fs-link {
+  height: 0.35cqw;
+  margin-top: -0.17cqw;
+}
+.fs-root[data-variant="sm"] .fs-link::after {
+  --fs-pulse: 1.4cqw;
+}
+.fs-root[data-variant="sm"] .fs-foot {
+  margin: 0 4cqw 4cqw;
+  padding: 2cqw 2.8cqw;
+  border-radius: 1.8cqw;
+  gap: 2.6cqw;
+}
+.fs-root[data-variant="sm"] .fs-foot-k {
+  display: none;
+}
+.fs-root[data-variant="sm"] .fs-foot-v {
+  font-size: 4.4cqw;
+}
+.fs-root[data-variant="sm"] .fs-foot-l {
+  font-size: 2.3cqw;
+}
+
+.fs-root[data-steps="5"] .fs-tool {
+  letter-spacing: 0.04em;
+  font-size: 0.95cqw;
+}
+/* Many steps: tighten labels so five nodes still fit */
+.fs-root[data-steps="5"] .fs-label {
+  font-size: 1.4cqw;
+}
+.fs-root[data-variant="sm"][data-steps="5"] .fs-label {
+  font-size: 2.1cqw;
+}
+
+/* Narrow containers: drop the sidebar so the pipeline keeps its room. .fs-root is a size container. */
+@container (max-width: 520px) {
+  .fs-side {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fs-link::after {
+    display: none;
+  }
+}
