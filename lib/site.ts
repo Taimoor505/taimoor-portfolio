@@ -22,6 +22,9 @@ export function pageMeta(o: {
       url: o.path,
       title: home ? o.title : `${o.title} · ${SITE_NAME}`,
       description: o.description,
+      // Pages that set openGraph lose the site-wide image, so set it explicitly.
+      // Release pages override this with their own opengraph-image file.
+      images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Taimoor Asif, AI Engineer" }],
     },
     twitter: { card: "summary_large_image" },
   };
