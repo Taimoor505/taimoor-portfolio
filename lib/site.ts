@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
-// UPDATE this to the real domain after the first Vercel deploy.
-export const SITE_URL = "https://taimoorasif.vercel.app";
+// Live site address. Change this if you add a custom domain.
+export const SITE_URL = "https://taimoor-portfolio-six.vercel.app";
 export const SITE_NAME = "Taimoor Asif";
 
 export function pageMeta(o: {
