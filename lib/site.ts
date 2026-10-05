@@ -9,6 +9,7 @@ export function pageMeta(o: {
   description: string;
   path: string;
   type?: "website" | "article";
+  image?: string;
 }): Metadata {
   const home = o.path === "/";
   return {
@@ -23,8 +24,7 @@ export function pageMeta(o: {
       title: home ? o.title : `${o.title} · ${SITE_NAME}`,
       description: o.description,
       // Pages that set openGraph lose the site-wide image, so set it explicitly.
-      // Release pages override this with their own opengraph-image file.
-      images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Taimoor Asif, AI Engineer" }],
+      images: [{ url: o.image ?? "/opengraph-image", width: 1200, height: 630, alt: o.title }],
     },
     twitter: { card: "summary_large_image" },
   };
