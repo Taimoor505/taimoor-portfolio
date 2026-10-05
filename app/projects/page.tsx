@@ -5,7 +5,7 @@ import ReleaseIndex, { ReleaseIndexView } from "@/components/projects/ReleaseInd
 
 export const metadata = pageMeta({
   title: "Index",
-  description: "Every release: voice AI agents, automation, AI agents and engineering work by Taimoor Asif.",
+  description: "Every system Taimoor Asif has built: voice AI agents, CRM and revenue automation, AI agents and engineering work, each with a case study.",
   path: "/projects",
 });
 

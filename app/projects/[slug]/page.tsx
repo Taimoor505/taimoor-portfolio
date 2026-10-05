@@ -19,7 +19,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!r) return { title: "Release not found" };
   return pageMeta({
     title: `${r.version}, ${r.name}`,
-    description: r.tagline,
+    // LinkedIn wants 100+ characters: tagline, result when there is one, then the stack.
+    description: [
+      `${r.tagline}.`,
+      r.result && r.result.value !== "Shipped" ? `Result: ${r.result.value} ${r.result.label}.` : "",
+      `Built with ${r.stack.slice(0, 4).join(", ")}.`,
+    ]
+      .filter(Boolean)
+      .join(" "),
     path: `/projects/${r.slug}`,
     image: `/projects/${r.slug}/opengraph-image`,
     type: "article",
