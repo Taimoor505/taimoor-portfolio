@@ -588,6 +588,8 @@ export const profile = {
   locationLong: "Lahore, Pakistan",
   utc: "UTC+5",
   startedYear: 2023,
+  // First full-time role (AdAxiom, Oct 2024). The home page counts professional years from this date.
+  careerStart: "2024-10",
   email: "taimoorasif48@gmail.com",
   github: "https://github.com/Taimoor505",
   linkedin: "https://www.linkedin.com/in/taimoor-asif-433969240",

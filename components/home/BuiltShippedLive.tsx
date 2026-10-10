@@ -72,7 +72,9 @@ export default function BuiltShippedLive() {
     };
   }, []);
 
-  const years = new Date().getFullYear() - profile.startedYear;
+  const [cy, cm] = profile.careerStart.split("-").map(Number);
+  const now = new Date();
+  const years = Math.max(1, Math.floor((now.getFullYear() * 12 + now.getMonth() + 1 - (cy * 12 + cm)) / 12));
   const caption = `${words(years)} ${years === 1 ? "year" : "years"} · ${words(releases.length)} releases · every one of them real`;
   const capitalised = caption.charAt(0).toUpperCase() + caption.slice(1);
 

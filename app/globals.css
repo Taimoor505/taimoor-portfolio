@@ -1,27 +1,29 @@
 @import "tailwindcss";
 
-/* Colour tokens. Names match the reference design; only the accent hue changed (cobalt instead of violet). */
+/* Colour tokens. Names match the reference design; the values are the Prussian palette. */
 :root {
-  --paper: #f5f1e5;
-  --paper-deep: #ece5d6;
-  --night: #171a22;
-  --night-2: #222634;
-  --violet-sheet: #1d3fd6;
-  --ink: #1f2a44;
-  --ink-2: #4b5670;
-  --ink-3: #5b657f; /* darkened from #66708a to pass WCAG AA on paper and paper-deep */
-  --on-night: #f5f1e5;
-  --on-night-2: #b3bdd8;
-  --on-night-3: #8089a6;
-  --on-violet: #f8f5ec;
-  --on-violet-2: #cfd9ff;
-  --violet: #1f45e0;
-  --violet-bright: #6f8dff;
+  /* Palette: Prussian (Black, Prussian Blue #14213d, Orange #fca311, Alabaster Grey #e5e5e5, White).
+     --violet is the accent token name kept from the original design; #a56702 is Orange darkened to pass WCAG AA on white. */
+  --paper: #ffffff;
+  --paper-deep: #e5e5e5;
+  --night: #14213d;
+  --night-2: #1d2d50;
+  --violet-sheet: #000000;
+  --ink: #14213d;
+  --ink-2: #3a4560;
+  --ink-3: #4e586e;
+  --on-night: #ffffff;
+  --on-night-2: #c3c9d6;
+  --on-night-3: #8f98ad;
+  --on-violet: #ffffff;
+  --on-violet-2: #ffd89a;
+  --violet: #a56702;
+  --violet-bright: #fca311;
   --live: #009349;
   --error: #b71824;
-  --line: #1f2a4429;
-  --line-strong: #1f2a4457;
-  --line-night: #f5f1e529;
+  --line: #14213d29;
+  --line-strong: #14213d57;
+  --line-night: #ffffff29;
 
   --t-mast: clamp(3.2rem, 0.6rem + 12.5vw, 11.5rem);
   --t-display: clamp(2.1rem, 1.15rem + 4.4vw, 4.6rem);
