@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, type ChangeEvent, type FormEvent, type ReactNode } from "react";
+import posthog from "posthog-js";
 import { profile } from "@/lib/data";
 
 type Fields = { name: string; email: string; subject: string; message: string };
@@ -83,6 +84,7 @@ export default function ContactForm() {
       setFields(empty);
       return;
     }
+    posthog.capture("contact_form_submitted", { submission_method: "mailto" });
     window.location.href = mailtoFor(fields);
     setToast({ open: true, kind: "success", message: "Opening your email app to send it." });
   }

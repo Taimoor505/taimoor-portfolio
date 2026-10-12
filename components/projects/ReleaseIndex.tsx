@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import posthog from "posthog-js";
 import { releases, wings, wingCount, type WingId } from "@/lib/data";
 
 function isWing(v: string | null): v is WingId {
@@ -109,6 +110,8 @@ export default function ReleaseIndex() {
   const active = isWing(raw) ? raw : null;
 
   const pick = (w: WingId | null) => {
+    if (w === active) return;
+    posthog.capture("project_filter_selected", { wing: w ?? "all" });
     const next = new URLSearchParams(params.toString());
     if (w) next.set("wing", w);
     else next.delete("wing");
