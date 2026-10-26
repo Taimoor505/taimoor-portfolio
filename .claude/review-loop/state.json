@@ -1,0 +1,181 @@
+{
+  "stoppedAfter": "manager:review-c1 (cycle 1 complete)",
+  "nextStep": "cycle 2, round 1: UX agent then UI agent working from the manager issues below",
+  "vision": "POSITIONING: \"The AI engineer who puts agents into production for real businesses.\" Taimoor is not a generalist web dev. He ships voice agents, LLM workflows and CRM automation that run day-to-day operations for US clients, and he cares about the unglamorous parts (idempotency, dedupe, retries, handover docs). Every page should say that within 5 seconds, using only claims already in lib/data.ts and the existing metadata (\"AI engineer in Lahore building voice AI agents, CRM automation and AI workflows for teams abroad. Open to remote roles and freelance builds.\").\n\nNARRATIVE (home, top to bottom, roughly 6-8 desktop screens in total):\n1) HERO. Name, then a plain one-sentence positioning headline, a sub-line with current role, location and availability (remote roles plus freelance), and two CTAs: \"See selected work\" (in-page anchor) and \"Get in touch\", with the resume as a tertiary link. The right column holds a READABLE live artifact. The best option is the voice-ordering transcript rendered as real text (labelled \"Illustrative example call\", matching the data comment) beside its 5-step flow. No blurred decoy window, no opacity-0 entrance on the headline.\n2) PROOF STRIP. Five or six existing outcome numbers set big in tabular display type, each with its one-line label and a link to its case study: <2 min lead response · 65% less footage review · 45 min → 0 setup per client · 0 duplicate dials · 300+ leads and replies a month · 24/7 inbound calls answered. Facts already in data.ts only, and leave out any number that conflicts elsewhere until the owner confirms it.\n3) SELECTED WORK. Four or five case-study cards, outcome-first: the big metric, the problem in one line, the client type (the existing `context` field), stack as small meta, and a readable flow. Lay them out with rhythm (alternating or a 2-up plus feature) so they aren't 17 identical navy rectangles. Then one line: \"All 18 projects →\" (with an accurate count, e.g. \"17 shipped, 1 in build\").\n4) CAPABILITIES. Merge \"Four wings\" and \"What I work in\" into one section: four areas, each with its sentence, tool tags and a link to its filtered project list.\n5) EXPERIENCE SNAPSHOT. A compact horizontal timeline of real roles (Borjan 2023 → AdAxiom → Systemic Digital → Kode X Labs (current) / 8x) linking to /experience.\n6) CONTACT plus footer merged into one closing Prussian sheet: what he's open to, email with a copy button, links, local time.\nThe \"Built. Shipped. Live.\" moment can survive only as a short (≤120vh, static on mobile) beat that carries information, or it goes.\n\nLANGUAGE: Drop the insider metaphor from the UI (release, v2026.x as hero type, wings, ledger, \"the maintainer\", \"Index\", \"Open this release\", logo \"V2.0\"). Use plain labels: Work, Case study, Projects, Experience, Contact. Version strings may stay as tiny mono metadata at most.\n\nCASE STUDY TEMPLATE: Back link → kind · date · client context → H1 project name → one-line tagline → hero metric block (value plus label) → status pill if in build → readable flow diagram (vertical, real text on mobile) → Problem (the about paragraph) / What shipped (hanging-indented +list) / Stack → for voice projects, the illustrative transcript → prev/next → closing CTA \"Need something like this built? Let's talk\".\n\nVISUAL DIRECTION: \"Prussian control room\". Paper-white and Alabaster daytime surfaces, deep Prussian (#14213d evolving to a deeper #0d1730-ish shade, no pure #000 slabs) for inverse sheets and a true dark mode, and Orange used for exactly two jobs: primary action and outcome numbers. Keep Bricolage for display and body. Add a monospace via next/font/google (e.g. JetBrains Mono or IBM Plex Mono, which is not an npm dependency) for meta, stack, versions and flow tool labels, so it reads as engineering and to cut the wall of 11px tracked uppercase. Semantic tokens (accent, accent-ink, surface, surface-raised, surface-inverse, ink-1/2/3, line) in light and dark, with Prussian-tinted shadows. Motion stays restrained: one live lamp (availability) instead of six, transform-only entrances, no font-axis animation on the LCP heading. Mobile is designed first, not shrunk: legible artifacts, one-thumb CTAs, a visible menu close, and no truncated project names. Lighthouse 95+ on all four categories, WCAG AA everywhere, zero factual drift.",
+  "baselineScore": 6,
+  "scoreHistory": [
+    {
+      "agent": "qa-ux:c1r1",
+      "score": 6.9
+    },
+    {
+      "agent": "qa-ui:c1r1",
+      "score": 7.4
+    },
+    {
+      "agent": "qa-ux:c1r2",
+      "score": 7.8
+    },
+    {
+      "agent": "qa-ui:c1r2",
+      "score": 7.6
+    },
+    {
+      "agent": "qa-ux:c1r3",
+      "score": 8.3
+    },
+    {
+      "agent": "qa-ui:c1r3",
+      "score": 7.6
+    },
+    {
+      "agent": "qa-ux:c1r4",
+      "score": 8.7
+    },
+    {
+      "agent": "qa-ui:c1r4",
+      "score": 8.5
+    },
+    {
+      "agent": "manager:review-c1",
+      "score": 8.3
+    }
+  ],
+  "managerReview": {
+    "score": 8.3,
+    "verdict": "Not done. The site is clean, honest and much closer to the brief: there is no factual drift, the language is plain, the heading and case-study structure is right, there is no horizontal overflow at 320px, and the automated dark-mode contrast scan of home found no AA failures. It still isn't something I'd put my name on. All 9 unique QA findings reproduce in the live browser and the code: the transcript disclaimer covers the result, the breakpoints don't match, the arrow is read aloud, the case study's \"Built with\" uses pills, the timeline shows a hairline, \"Real time\" outranks the measured numbers, the 4-up proof strip is cramped at 1024, the numerals collapse to 20px at 320, and the /contact intro line has no subject. QA also missed a set of layout and brief-compliance problems: the feature card's right column is about 70% empty, the \"compact horizontal timeline\" is a 580px vertical list below 1200px with a caption that explains its own sort order, and orange is doing four jobs instead of two. QA padded its list too: 11 items, but only 9 unique (#8 repeats #2 and #10 repeats #4). Score 8.3/10. QA's 8.7 and 8.5 were too generous for a list of open defects this long.",
+    "qaMistakes": [
+      "They padded the issue list with duplicates: #8 is #2 again (feature-card flow max-sm vs small-card max-md) and #10 is #4 again (case study 'Built with' pills). '11 outstanding issues' is really 9, and the cycle's issue count was inflated.",
+      "Their scores were too generous: 8.7 and 8.5 while they themselves list an AT defect (the arrow read aloud), a visual artefact (the timeline hairline), a hierarchy inversion ('Real time') and a truthfulness blur (a measured result inside the 'illustrative' figure). That isn't 8.5+ work.",
+      "They missed the feature card's dead right column. At 1440 the Lead Response card is 526px tall, its right column 436px, and the FlowSteps row only 112px. About 300px of the flagship card is empty Prussian.",
+      "They missed that the Experience snapshot isn't the 'compact horizontal timeline' in the brief. Below 1200px (so at 1024 to 1199 desktop as well) it is five stacked rows of 116px, about 580px. It runs current role first, not chronologically, so the page needs a meta caption ('Current role first, then newest first.') to explain its own order. The same crutch sentence appears in the /experience intro. Copy that explains the layout is a design failure, and QA let it pass.",
+      "They missed the orange discipline. The brief says orange does exactly two jobs (primary action and outcome numbers). The '+' bullets on case-study 'What shipped' and on /experience areas (.diff-add::before uses --accent-ink), plus the focus rings and the caret, are extra jobs. The token comment in globals.css even documents four uses.",
+      "They declared 'pills only for status' as the rule but never checked /projects. The filter buttons there are rounded-full outlined pills on the same page as the 'Shipped' and 'In build' status pills. The case study 'Built with' isn't the only place pill shape carries a second meaning.",
+      "They missed the status wording inconsistency: the home timeline badge says 'Current' and the /experience pill says 'Current role' for the same status.",
+      "They missed the hero overrun at the most common laptop size. At 1440x900 the hero section is 1060px tall, so the 5-step flow and most of the 'After the call' result sit below the fold. The brief wanted the flow beside the transcript as the readable artefact.",
+      "They missed the motion rule: the one lamp pulses by animating box-shadow forever (a paint every frame), not transform or opacity, which breaks the 'transform-only' motion rule.",
+      "They didn't challenge the redundant contact flow. /contact offers 'Email me', 'Copy email' and a four-field form whose only action is the same mailto, with a toast admitting it may not open on webmail-only machines."
+    ],
+    "issues": [
+      {
+        "severity": "major",
+        "area": "ux",
+        "where": "components/shared/CallTranscript.tsx:164-173 + components/home/Hero.tsx:16-21,81-87; home at 375x812",
+        "problem": "(QA #1, confirmed) On phones the hero's only measured result, 'After the call: 0 staff steps from call to ticket', sits inside the <figure> whose figcaption says 'Illustrative example call / Written as an example, not a recording of a real customer'. The real metric now reads as part of the made-up example. That is a truthfulness problem on the first screen of a site whose whole pitch is credibility.",
+        "fix": "Remove moreNote from CallTranscript. In Hero, render a sibling block directly after the CallTranscript, below 640px only (sm:hidden): a ruled row reading 'Result: 0 staff steps from call to ticket' followed by 'Read the full call →' and 'Case study →'. Then delete the resultInCard 'max-sm:hidden' trick on the bottom bar, or just let the bottom bar show at every width without the flow. Nothing measured may sit inside an element labelled illustrative."
+      },
+      {
+        "severity": "major",
+        "area": "ui",
+        "where": "components/home/SelectedWork.tsx:22-50 (feature card right column); home at 1024-1440, light and dark",
+        "problem": "The flagship case-study card's right half is mostly empty. At 1440 the card is 526px tall, the left column 436px, and the 'How it works' FlowSteps row only 112px, centred vertically, so about 300px of Prussian sits blank. The most important card on the page looks unfinished.",
+        "fix": "Give the feature card's flow the vertical, described layout (force the stacked FlowSteps variant with a data-orient=\"vertical\" prop, so each step gets a label plus a tool line with real vertical rhythm). Or fill the column with the first 2-3 'shipped' bullets under the flow as a hanging '+' list. Aim for the right column's content to fill at least 75% of the left column's height at 1024, 1280 and 1440."
+      },
+      {
+        "severity": "minor",
+        "area": "ux",
+        "where": "components/home/ExperienceSnapshot.tsx:16 ('Current role first, then newest first.'); components/shared/shared.css:271-365; app/experience/page.tsx:106-107",
+        "problem": "The brief asked for a compact horizontal timeline (Borjan 2023 → AdAxiom → Systemic Digital → Kode X Labs current / 8x). What shipped is current-first, non-chronological columns from 1200px only, and below 1200px a 5×116px vertical list (about 580px at 1024). Because the order isn't chronological, both home and /experience carry copy that explains the sort order.",
+        "fix": "On home, order the roles chronologically left to right (oldest → newest), with Kode X Labs (current) last and the 8x/Systemic contracts shown as concurrent with it (stacked in the last column or marked 'alongside'). Keep it horizontal from 768px with a horizontally scrollable or 2-row layout, and delete the 'Current role first, then newest first.' caption on home. On /experience, drop the sentence 'Current role first, then newest first. Short contracts that ran alongside the current role are marked.' The layout and badges should make that obvious."
+      },
+      {
+        "severity": "minor",
+        "area": "ui",
+        "where": "components/shared/shared.css:352-355; home Experience at 1440x900 light",
+        "problem": "(QA #5, confirmed visually) The box-shadow '0 -1px 0 var(--ink-1)' on the fractional-width transparent li leaves a 1px dark vertical sliver down the right edge of the Kode X Labs column.",
+        "fix": "Remove the box-shadow. Use .timeline-item{position:relative} plus .timeline-item[data-current]::before{content:'';position:absolute;inset-inline:0;top:-2px;height:1px;background:var(--ink-1)}. Verify at 1200, 1280 and 1440 that no hairline appears."
+      },
+      {
+        "severity": "minor",
+        "area": "ui",
+        "where": "components/home/SelectedWork.tsx:77 (text-(length:--t-h2) text-ink); components/projects/ReleaseIndex.tsx:50; app/projects/[slug]/page.tsx:83",
+        "problem": "(QA #6, confirmed) The word outcome 'Real time' is set at h2 in ink-1, the heaviest and darkest element in the row. It outranks the measured amber '0' and '24/7' beside it, and on the case study it reads as a second H1.",
+        "fix": "Set word outcomes in text-ink-2, weight 500, one step down: t-h3 on home cards and the case study, t-lead on /projects. One rule in all three places, ideally via a shared <Outcome> component so it can't drift again."
+      },
+      {
+        "severity": "minor",
+        "area": "ui",
+        "where": "components/home/ProofStrip.tsx:202 (lg:grid-cols-4), app/globals.css:304-307; home at 1024x768",
+        "problem": "(QA #7, confirmed by measurement) At 1024 the cells are 235px wide, numerals 40px (smaller than the 50px of the 2-up layout one breakpoint down), labels wrap to 2 lines, and the project-name meta tops are ragged (304 vs 324px).",
+        "fix": "Go 4-up at xl (1280px) instead of lg. Then re-measure at 1024, 1200 and 1280: names on one line, meta tops equal, and numerals no smaller than in the 2-up layout."
+      },
+      {
+        "severity": "minor",
+        "area": "ui",
+        "where": "components/home/ProofStrip.tsx:214 (max-[359px]:text-(length:--t-h3)); home at 320x700",
+        "problem": "(QA #9, confirmed) At 320px every proof numeral is 20px, barely bigger than its 15.5px label, so the number-first strip loses its hierarchy.",
+        "fix": "Remove the blanket t-h3 override and let a container-width cap govern below 640px (e.g. font-size:min(var(--t-num-md), (100cqi - 1rem)/4.75)), aiming for 24-26px at 320px with at least 12px clearance for '45 min → 0'."
+      },
+      {
+        "severity": "minor",
+        "area": "ux",
+        "where": "lib/data.ts:301 rendered in components/home/ProofStrip.tsx:215, components/projects/ReleaseIndex.tsx:44, app/projects/[slug]/page.tsx:76",
+        "problem": "(QA #3, valid) The literal → in '45 min → 0' is read aloud as 'right arrow' in the first proof link's accessible name, and in two other places.",
+        "fix": "Add a formatOutcome(value) helper that splits on '→' and renders <span aria-hidden=\"true\">→</span><span className=\"sr-only\"> to </span>. Use it in all three render sites, plus the OG image text if that matters. Leave the data string unchanged."
+      },
+      {
+        "severity": "minor",
+        "area": "ui",
+        "where": "components/home/SelectedWork.tsx:46 (max-sm:hidden) vs :91 (max-md:hidden); home at 640-767px",
+        "problem": "(QA #2/#8, the same issue counted twice) The feature card shows its 4-step flow from 640px but the small cards only from 768px, so between 640 and 767 the stacked cards follow two rules. The code comment claims they match.",
+        "fix": "Use max-md:hidden on the feature flow block too, and update the comment at :44-45 to match the code. This becomes moot if the feature card gets a vertical flow that is meant to show on tablets; in that case pick one breakpoint deliberately and document it."
+      },
+      {
+        "severity": "minor",
+        "area": "ui",
+        "where": "app/projects/[slug]/page.tsx:122-127 ('Built with' chips); components/projects/ReleaseIndex.tsx:284 (filter buttons) vs .pill",
+        "problem": "(QA #4/#10, the same issue counted twice, and QA under-scoped it) The case study's 'Built with' is rounded-full outlined chips, while everywhere else the stack uses the mono <Stack> line. On /projects the filter buttons are also rounded outlined pills on the same page as the 'Shipped' and 'In build' status pills, so pill shape still means status, tool and filter.",
+        "fix": "Render 'Built with' with <Stack items={r.stack} className=\"mt-5 border-t border-line-strong pt-5 text-ink-2\" />. Make the /projects filters a segmented control (square-cornered, joined, one shared border) or underlined tabs, so the rounded pill is only ever a status."
+      },
+      {
+        "severity": "minor",
+        "area": "ui",
+        "where": "app/globals.css:425-435 (.diff-add::before color: var(--accent-ink)); app/globals.css:30-37 token comment; case-study 'What shipped', /experience areas",
+        "problem": "The brief says orange does exactly two jobs: primary action and outcome numbers. The '+' list markers on every case study and on /experience are orange too, which dilutes the outcome-number signal. The token comment documents four uses (with focus ring and caret).",
+        "fix": "Set .diff-add::before to var(--ink-3) (and var(--on-inverse-3) on inverse). Consider an ink-1 focus ring with a 2px surface halo instead of accent-ink, so orange is reserved for the CTA fill and the numerals. Update the token comment."
+      },
+      {
+        "severity": "minor",
+        "area": "ux",
+        "where": "components/home/Hero.tsx:94-116; home at 1440x900",
+        "problem": "At the most common laptop viewport the hero is 1060px tall. The 5-step flow (the 'live artefact' the brief asked to sit beside the transcript) and most of the result bar fall below the fold, so the first screen shows no measured number.",
+        "fix": "Bring the result line up into the right column, directly under the transcript card and outside the figure (shared with the mobile fix above), and tighten the hero's bottom padding (pb ~0.4 × section) so the result plus at least the top of the flow is visible at 1440x900 and 1366x768. Or show 4 transcript lines on desktop instead of 5."
+      },
+      {
+        "severity": "minor",
+        "area": "ux",
+        "where": "app/contact/page.tsx:26",
+        "problem": "(QA #11, valid) 'Write to me directly or draft a message below. Usually within 24 hours.' The second sentence has no subject; a label-style data value is dropped into prose.",
+        "fix": "Change to 'Write to me directly or draft a message below. I usually reply within 24 hours.' Keep profile.replies for the definition-list contexts."
+      },
+      {
+        "severity": "minor",
+        "area": "ux",
+        "where": "app/contact/page.tsx:28-77 + components/shell/ContactForm.tsx",
+        "problem": "/contact offers three routes to the same outcome: 'Email me' (mailto), 'Copy email', and a four-field form whose submit is also mailto, with a toast admitting it may do nothing on webmail-only machines. The form adds friction and a failure mode without adding capability.",
+        "fix": "Either cut the form to a single optional 'Draft a message' disclosure under the email block, collapsed by default, or keep it but put 'Copy email' inline next to the submit button, so the fallback is visible before the click rather than in a 7-second toast."
+      },
+      {
+        "severity": "nitpick",
+        "area": "ui",
+        "where": "components/shared/RoleTimeline.tsx:193 ('Current') vs components/experience/RoleEntry.tsx ('Current role')",
+        "problem": "The same status uses two labels on two pages.",
+        "fix": "Use 'Current role' in both places, or 'Current' in both, from one constant."
+      },
+      {
+        "severity": "nitpick",
+        "area": "ui",
+        "where": "app/globals.css:510-525 (.lamp, lamp-pulse)",
+        "problem": "The single lamp animates box-shadow on an infinite loop, which forces a repaint every frame and breaks the 'transform-only' motion rule.",
+        "fix": "Draw the halo as a ::after ring and animate transform: scale() and opacity on it instead of box-shadow. Keep the reduced-motion override."
+      },
+      {
+        "severity": "nitpick",
+        "area": "ui",
+        "where": "components/projects/ReleaseIndex.tsx:56-60; /projects 'Brand Referral Platform' row",
+        "problem": "The one 'Shipped' result row shows 'Shipped' plus 'through PR review and CI' in the outcome column. A process note sits where every other row has a result or its stack, so it reads like an outcome claim.",
+        "fix": "Treat it like the other no-outcome rows: 'Shipped' pill plus the first three stack items. Move 'through PR review and CI' to the case study only."
+      }
+    ]
+  }
+}

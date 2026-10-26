@@ -4,7 +4,7 @@ import ContactForm from "@/components/shell/ContactForm";
 
 export const metadata = pageMeta({
   title: "Contact",
-  description: "Get in touch with Taimoor Asif, AI engineer in Lahore, about full-time remote AI engineering roles or freelance automation and voice AI projects.",
+  description: "Get in touch with Taimoor Asif, full-stack software engineer in Lahore, about full-time remote engineering roles or freelance automation and voice AI projects.",
   path: "/contact",
 });
 

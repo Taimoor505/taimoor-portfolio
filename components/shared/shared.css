@@ -1,0 +1,397 @@
+/* Same layer order as globals.css (restating it is harmless). The rules sit in the components layer,
+   so Tailwind utilities passed in className (margins, padding) win over them. */
+@layer theme, base, components, utilities;
+
+@layer components {
+/* Shared readable building blocks: FlowSteps, CallTranscript, RoleTimeline.
+   Real text at real sizes (no container-unit scaling), so they stay legible on a phone. */
+
+/* FlowSteps */
+.flow-wrap {
+  container-type: inline-size;
+  --fl-ink: var(--ink-1);
+  --fl-ink-3: var(--ink-3);
+  --fl-line: var(--line-strong);
+  --fl-surface: var(--surface);
+  --fl-end: var(--ink-1);
+}
+.flow-wrap[data-tone="dark"] {
+  --fl-ink: var(--on-inverse);
+  --fl-ink-3: var(--on-inverse-2);
+  --fl-line: var(--line-inverse);
+  --fl-surface: var(--surface-inverse);
+  --fl-end: var(--on-inverse);
+}
+.flow {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+}
+.flow-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  column-gap: 0.85rem;
+  padding: 0.55rem 0;
+}
+.flow-step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: calc(1rem - 0.5px);
+  top: 2.65rem;
+  bottom: -0.45rem;
+  width: 1px;
+  background: var(--fl-line);
+}
+.flow-idx {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  border: 1px solid var(--fl-line);
+  background: var(--fl-surface);
+  color: var(--fl-ink-3);
+  font-size: var(--t-xs);
+}
+.flow-step:last-child .flow-idx {
+  border-color: var(--fl-end);
+  color: var(--fl-end);
+}
+.flow-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding-top: 0.2rem;
+  min-width: 0;
+}
+.flow-label {
+  color: var(--fl-ink);
+  font-weight: 600;
+  line-height: 1.3;
+}
+.flow-tool {
+  color: var(--fl-ink-3);
+  font-size: var(--t-meta);
+  overflow-wrap: anywhere;
+}
+.flow-label {
+  text-wrap: balance;
+}
+/* Compact variant (cards, hero): label and tool share a line while the list is vertical */
+.flow-wrap[data-size="sm"] .flow-label {
+  font-size: var(--t-sm);
+}
+.flow-wrap[data-size="sm"] .flow-step {
+  grid-template-columns: 1.75rem minmax(0, 1fr);
+  column-gap: 0.75rem;
+  padding: 0.3rem 0;
+}
+.flow-wrap[data-size="sm"] .flow-idx {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+.flow-wrap[data-size="sm"] .flow-text {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 0.6rem;
+  padding-top: 0.15rem;
+}
+.flow-wrap[data-size="sm"] .flow-step:not(:last-child)::after {
+  left: calc(0.875rem - 0.5px);
+  top: 2.1rem;
+  bottom: -0.25rem;
+}
+/* Rows once there is room: 40rem for the full-size flow, 34rem for the compact one in cards, so a
+   card around 600px wide never shows a narrow vertical list beside empty space. */
+@container (min-width: 34rem) {
+  .flow-wrap[data-size="sm"] .flow {
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    column-gap: 1rem;
+  }
+  .flow-wrap[data-size="sm"] .flow-step {
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start; /* steps stretch to the tallest; keep the number row the same height in each */
+    row-gap: 0.7rem;
+    padding: 0;
+  }
+  .flow-wrap[data-size="sm"] .flow-step:not(:last-child)::after {
+    left: 2.35rem;
+    right: -0.4rem;
+    top: 0.875rem;
+    bottom: auto;
+    width: auto;
+    height: 1px;
+  }
+  .flow-wrap[data-size="sm"] .flow-text {
+    flex-direction: column;
+    padding-top: 0;
+  }
+}
+/* A full-size flow of three or four steps goes to a row from 36rem: four columns of about 140px
+   still hold a label and a tool name, and a wide card never shows a third-width vertical list. */
+@container (min-width: 36rem) {
+  .flow-wrap[data-size="md"]:is([data-steps="3"], [data-steps="4"]) .flow {
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    column-gap: 1rem;
+  }
+  .flow-wrap[data-size="md"]:is([data-steps="3"], [data-steps="4"]) .flow-step {
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+    row-gap: 0.7rem;
+    padding: 0;
+  }
+  .flow-wrap[data-size="md"]:is([data-steps="3"], [data-steps="4"]) .flow-step:not(:last-child)::after {
+    left: 2.6rem;
+    right: -0.4rem;
+    top: 1rem;
+    bottom: auto;
+    width: auto;
+    height: 1px;
+  }
+}
+@container (min-width: 40rem) {
+  .flow {
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    column-gap: 1rem;
+  }
+  .flow-step,
+  .flow-wrap[data-size="sm"] .flow-step {
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start; /* steps stretch to the tallest; keep the number row the same height in each */
+    row-gap: 0.7rem;
+    padding: 0;
+  }
+  .flow-step:not(:last-child)::after,
+  .flow-wrap[data-size="sm"] .flow-step:not(:last-child)::after {
+    left: 2.6rem;
+    right: -0.4rem;
+    top: 1rem;
+    bottom: auto;
+    width: auto;
+    height: 1px;
+  }
+  .flow-wrap[data-size="sm"] .flow-step:not(:last-child)::after {
+    left: 2.35rem;
+    top: 0.875rem;
+  }
+  .flow-wrap[data-size="sm"] .flow-text {
+    flex-direction: column;
+    padding-top: 0;
+  }
+}
+
+/* CallTranscript */
+.call {
+  margin: 0;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--line-inverse);
+  background: var(--surface-inverse);
+  color: var(--on-inverse);
+  padding: clamp(1rem, 0.8rem + 0.8vw, 1.5rem);
+}
+.call-head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--line-inverse);
+}
+.call-title {
+  margin: 0;
+  font-size: var(--t-body);
+  font-weight: 650;
+  line-height: 1.3;
+  color: var(--on-inverse);
+}
+.call-sub {
+  color: var(--on-inverse-2);
+  font-size: var(--t-meta);
+}
+.call-lines {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.call-line {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  max-width: 88%;
+}
+.call-line[data-who="caller"] {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+.call-who {
+  font-size: var(--t-xs);
+  color: var(--on-inverse-2);
+}
+.call-text {
+  margin: 0;
+  padding: 0.6rem 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-inverse);
+  background: var(--surface-inverse-raised);
+  font-size: var(--t-sm);
+  line-height: 1.45;
+}
+.call-line[data-who="agent"] .call-text {
+  border-bottom-left-radius: 0.25rem;
+}
+.call-line[data-who="caller"] .call-text {
+  border-bottom-right-radius: 0.25rem;
+  background: transparent;
+}
+
+.call-more {
+  margin: 0.85rem 0 -0.35rem;
+  padding-top: 0.35rem;
+  border-top: 1px solid var(--line-inverse);
+}
+.call-note {
+  margin: 0;
+  padding-top: 0.6rem;
+  color: var(--on-inverse-2);
+}
+.call-note strong {
+  font-weight: 650;
+  color: var(--on-inverse);
+}
+
+/* RoleTimeline */
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  border-top: 1px solid var(--line-strong);
+}
+.timeline-item {
+  border-bottom: 1px solid var(--line);
+}
+/* The link hangs into the gutter by its own side padding, so the text sits on the section's left
+   edge (under the heading) and only the hover fill bleeds past it. The rules stay on the items. */
+.timeline-link {
+  display: grid;
+  gap: 0.15rem;
+  min-height: 44px;
+  margin-inline: -0.5rem;
+  padding: 0.9rem 0.5rem;
+  color: var(--ink-1);
+  transition: background-color 0.2s var(--ease-exit);
+}
+.timeline-link:hover {
+  background: var(--surface-sunken);
+}
+.timeline-org-name {
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 5px;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 0.18s var(--ease-exit);
+}
+.timeline-link:hover .timeline-org-name {
+  text-decoration-color: var(--line-strong);
+}
+.timeline-period {
+  color: var(--ink-3);
+  font-size: var(--t-meta);
+}
+.timeline-org {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 650;
+  line-height: 1.3;
+}
+.timeline-title {
+  color: var(--ink-2);
+  font-size: var(--t-sm);
+  line-height: 1.35;
+}
+.timeline-type {
+  color: var(--ink-3);
+  font-size: var(--t-meta);
+  line-height: 1.35;
+}
+.timeline-badge {
+  font-size: var(--t-xs);
+  font-weight: 500;
+  line-height: 1.4;
+  padding: 0 0.5rem;
+  border: 1px solid currentColor;
+  border-radius: 9999px;
+}
+/* Columns from 1200px: below that the columns are too narrow for a date range on one line.
+   The order is current role first, then newest first (same as /experience), which is not a strict
+   chronology, so there is no connecting axis or dots that would read as one: each role is its own
+   column with its own top rule, and the current role's rule is the strong one. */
+@media (min-width: 1200px) {
+  .timeline {
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    column-gap: 1rem;
+    border-top: 0;
+  }
+  .timeline-item {
+    border-top: 1px solid var(--line-strong);
+    border-bottom: 0;
+  }
+  /* The strong rule is the 1px border plus one pixel drawn above it, so the box (and the text in
+     it) stays on the same line as the other columns and the rules share their bottom edge. */
+  .timeline-item[data-current] {
+    border-top-color: var(--ink-1);
+    box-shadow: 0 -1px 0 var(--ink-1);
+  }
+  .timeline-link {
+    align-content: start;
+    height: 100%;
+  }
+  .timeline-period {
+    white-space: nowrap;
+  }
+}
+
+/* One link per card: the heading link covers the card. The card needs position: relative. */
+.stretched-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: var(--radius-card);
+}
+.stretched-link:focus-visible {
+  outline: none;
+}
+.stretched-link:focus-visible::after {
+  outline: 2px solid var(--accent-ink);
+  outline-offset: 3px;
+}
+.on-inverse .stretched-link:focus-visible::after {
+  outline-color: var(--accent-on-inverse);
+}
+
+/* Case-study cards: one surface treatment, the border firms up and the card lifts on hover */
+.work-card {
+  transition: border-color 0.2s var(--ease-exit), box-shadow 0.2s var(--ease-exit);
+}
+.work-card:hover,
+.work-card:focus-within {
+  border-color: var(--ink-1);
+  box-shadow: var(--shadow-md);
+}
+.work-card.on-inverse:hover,
+.work-card.on-inverse:focus-within {
+  border-color: var(--on-inverse-3);
+}
+}

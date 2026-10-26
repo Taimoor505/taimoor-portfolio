@@ -17,8 +17,8 @@ const bricolage = Bricolage_Grotesque({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: { default: "Taimoor Asif, AI Engineer", template: "%s · Taimoor Asif" },
-  description: "AI agents, voice agents and automations that run real business operations. Remote from Lahore.",
+  title: { default: "Taimoor Asif, Full-stack Software Engineer", template: "%s · Taimoor Asif" },
+  description: "Full-stack software engineer building production AI agents, voice agents and business automations in Python and Next.js. Remote from Lahore.",
 };
 
 export const viewport: Viewport = {

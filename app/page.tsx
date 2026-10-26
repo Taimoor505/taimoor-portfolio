@@ -7,9 +7,9 @@ import Practice from "@/components/home/Practice";
 import SayHello from "@/components/home/SayHello";
 
 export const metadata = pageMeta({
-  title: "Taimoor Asif, AI Engineer",
+  title: "Taimoor Asif, Full-stack Software Engineer",
   description:
-    "AI engineer in Lahore building voice AI agents, CRM automation and AI workflows for teams abroad. Open to remote roles and freelance builds.",
+    "Full-stack software engineer in Lahore building production AI agents, voice agents and business automations, and the Python and Next.js code around them. Open to remote roles and freelance builds.",
   path: "/",
 });
 

@@ -6,7 +6,7 @@ import { pageMeta } from "@/lib/site";
 export const metadata = pageMeta({
   title: "Experience",
   description:
-    "The professional record: AI Automation Engineer at Kode X Labs, software engineering at 8x, automation for a US agency, and computer vision at AdAxiom.",
+    "The professional record: AI Automation Engineer at Kode X Labs, software engineering at 8x, GoHighLevel automation for Systemic Digital, and computer vision at AdAxiom Tech.",
   path: "/experience",
 });
 
@@ -22,7 +22,8 @@ export default function ExperiencePage() {
           </h1>
           <p className="measure mt-6 text-lg text-ink-2">
             Where the work meets real businesses: voice agents, CRM automation, product code and computer vision.
-            Newest first, with the stack each role ran on.
+            Newest first, with the stack each role ran on. Systemic Digital and 8x were remote contracts held
+            alongside Kode X Labs on non-overlapping schedules.
           </p>
 
           <div className="mt-14 border-t border-line-strong md:mt-20">
