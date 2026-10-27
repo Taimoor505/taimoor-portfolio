@@ -10,10 +10,10 @@ export type Wing = {
 };
 
 export const wings: Wing[] = [
-  { id: "voice", name: "Voice AI", blurb: "Phone agents that answer, qualify and book" },
-  { id: "automation", name: "Automation", blurb: "CRM and revenue systems that run themselves" },
-  { id: "agents", name: "AI agents", blurb: "Workflows where the model makes the call" },
-  { id: "engineering", name: "Engineering", blurb: "Code, dashboards and computer vision" },
+  { id: "voice", name: "Voice AI", blurb: "Phone agents that answer, qualify, and book" },
+  { id: "automation", name: "CRM Automation", blurb: "Revenue pipelines and lead capture that run themselves" },
+  { id: "agents", name: "AI Workflows", blurb: "Task automation, LLM workflows, and data pipelines" },
+  { id: "engineering", name: "Full-Stack & Vision", blurb: "Production Next.js apps, Python APIs, and computer vision" },
 ];
 
 export type FlowStep = { label: string; tool: string };
@@ -645,7 +645,7 @@ export const roles: Role[] = [
     title: "Software Engineer",
     org: "8x",
     summary:
-      "Built product in a distributed remote team. I owned the frontend of a referral platform for brand partnerships and worked on an AI support bot for the hiring product.",
+      "Built product in a distributed remote team. I owned the frontend of a referral platform for brand partnerships and worked on an AI support bot for the hiring product. Delivered concurrently with Kode X Labs under an approved remote contract schedule.",
     areas: [
       { title: "Scout frontend", text: "Onboarding, referral tracking and a weekly leaderboard in Next.js, Prisma and Tailwind." },
       { title: "How we shipped", text: "Branch, pull request, review and merge on every change, with CI deploys." },

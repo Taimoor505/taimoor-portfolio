@@ -16,14 +16,11 @@ export default function ExperiencePage() {
       <section className="bg-paper pb-24 pt-28 md:pb-32 md:pt-36">
         <div className="mx-auto max-w-[1600px] px-5 md:px-10">
           <h1 className="mast text-ink">
-            In
-            <br />
-            production<span className="text-violet">.</span>
+            Experience<span className="text-violet">.</span>
           </h1>
           <p className="measure mt-6 text-lg text-ink-2">
-            Where the work meets real businesses: voice agents, CRM automation, product code and computer vision.
-            Newest first, with the stack each role ran on. Systemic Digital and 8x were remote contracts held
-            alongside Kode X Labs on non-overlapping schedules.
+            Production record across voice agents, CRM automation, full-stack product code, and computer vision.
+            Detailed with the technical architecture, stack, and measurable business impact of each role.
           </p>
 
           <div className="mt-14 border-t border-line-strong md:mt-20">
@@ -43,9 +40,9 @@ export default function ExperiencePage() {
             <div className="md:col-span-8 md:col-start-5">
               <h2 className="display-2 text-ink">BS Computer Science</h2>
               <p className="measure mt-5 text-ink-2">
-                NCBA&amp;E, Lahore. The releases built since live in{" "}
+                NCBA&amp;E, Lahore. The systems and production agents built since live in{" "}
                 <Link className="ledger-link text-ink" href="/projects">
-                  the index
+                  projects
                 </Link>
                 .
               </p>

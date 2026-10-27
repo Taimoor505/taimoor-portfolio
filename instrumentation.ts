@@ -10,8 +10,8 @@ if ((!token || !host) && process.env.NODE_ENV === "development") {
   const missingVariable = token
     ? "NEXT_PUBLIC_POSTHOG_HOST"
     : "NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN";
-  throw new Error(
-    `${missingVariable} variable required by PostHog is missing or un-configured, this causes events to be silently missed. This error stops appearing once ${missingVariable} is configured`,
+  console.warn(
+    `[PostHog] ${missingVariable} is not configured; analytics logging is paused.`,
   );
 }
 

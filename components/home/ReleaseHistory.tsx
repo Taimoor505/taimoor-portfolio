@@ -21,14 +21,14 @@ const isFull = (r: Release) => Boolean(r.result || r.status);
 function FullCard({ r }: { r: Release }) {
   const href = `/projects/${r.slug}`;
   return (
-    <li className="relative border-b border-line py-10 pl-6 md:py-14 md:pl-10" data-spine={`${r.version} · ${r.name}`}>
+    <li className="relative border-b border-line py-10 pl-6 md:py-14 md:pl-10" data-spine={r.name}>
       <span className="absolute left-0 top-[3.2rem] h-px w-4 bg-ink md:top-[4.2rem] md:w-6" aria-hidden="true" />
       <div className="grid grid-cols-1 gap-6 md:grid-cols-12 md:gap-10">
         <div className="flex flex-col md:col-span-4">
-          <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-            <span className="tag-lg text-violet">{r.version}</span>
-            <span className="tag text-ink-2">{r.date}</span>
-            <span className="tag text-ink-3">{r.kind}</span>
+          <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 font-mono text-xs">
+            <span className="font-semibold text-violet">{r.kind}</span>
+            <span className="text-ink-2">{r.date}</span>
+            <span className="text-ink-3">{r.context}</span>
           </div>
           <h3 className="display-2 mt-3 text-balance text-ink">
             <Link className="transition-colors hover:text-violet" href={href}>
@@ -36,19 +36,19 @@ function FullCard({ r }: { r: Release }) {
             </Link>
           </h3>
           <p className="measure mt-3 text-ink-2">{r.tagline}</p>
-          <p className="tag mt-4 flex flex-wrap gap-x-4 gap-y-1 text-ink-3">
+          <p className="mt-4 flex flex-wrap gap-x-3 gap-y-1 font-mono text-xs text-ink-3">
             {r.stack.slice(0, 4).map((s) => (
               <span key={s}>{s}</span>
             ))}
           </p>
           <div className="mt-6 md:mt-auto md:pt-6">
             <Link className="btn-label flip flip-outline inline-block px-6 py-3.5" href={href}>
-              Open release
+              View case study →
             </Link>
           </div>
         </div>
         <div className="md:col-span-8">
-          <Link aria-label={`${r.name}, open release`} href={href}>
+          <Link aria-label={`${r.name}, view case study`} href={href}>
             <div className="mount group relative aspect-[16/9]">
               <FlowScreen release={r} variant="sm" />
             </div>
@@ -61,7 +61,7 @@ function FullCard({ r }: { r: Release }) {
 
 function CompactRow({ r }: { r: Release }) {
   return (
-    <li className="relative border-b border-line" data-spine={`${r.version} · ${r.name}`}>
+    <li className="relative border-b border-line" data-spine={r.name}>
       <Link
         className="group flex flex-wrap items-baseline gap-x-5 gap-y-1 rounded-2xl py-5 pl-6 pr-4 transition-colors duration-200 hover:bg-ink md:pl-10"
         href={`/projects/${r.slug}`}
@@ -70,12 +70,12 @@ function CompactRow({ r }: { r: Release }) {
           className="absolute left-0 top-1/2 h-px w-4 -translate-y-1/2 bg-ink transition-colors group-hover:bg-paper md:w-6"
           aria-hidden="true"
         />
-        <span className="tag-lg text-violet transition-colors group-hover:text-violet-bright">{r.version}</span>
+        <span className="font-mono text-xs font-semibold text-violet transition-colors group-hover:text-violet-bright">{r.kind}</span>
         <span className="display-2 !text-[1.15rem] text-ink transition-colors group-hover:text-paper md:!text-[1.35rem]">
           {r.name}
         </span>
-        <span className="tag hidden text-ink-3 transition-colors group-hover:text-on-night-2 sm:inline">{r.kind}</span>
-        <span className="tag ml-auto text-ink-2 transition-colors group-hover:text-paper">Open →</span>
+        <span className="hidden font-mono text-xs text-ink-3 transition-colors group-hover:text-on-night-2 sm:inline">{r.context}</span>
+        <span className="ml-auto font-mono text-xs text-ink-2 transition-colors group-hover:text-paper">View →</span>
       </Link>
     </li>
   );
@@ -86,10 +86,10 @@ function Milestone({ date, text, current, link = true }: { date: string; text: s
     <li className="relative border-b border-line py-6 pl-6 md:pl-10">
       <span className="absolute left-0 top-[2.1rem] h-2 w-2 -translate-y-1/2 rotate-45 bg-violet" aria-hidden="true" />
       <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-        <span className="tag text-violet">{date}</span>
+        <span className="font-mono text-xs font-semibold text-violet">{date}</span>
         {current && (
           <span className="tag flex items-center gap-2 text-ink-2">
-            <span className="lamp" aria-hidden="true" /> current
+            <span className="lamp" aria-hidden="true" /> Current role
           </span>
         )}
       </div>
@@ -97,7 +97,7 @@ function Milestone({ date, text, current, link = true }: { date: string; text: s
         {text}{" "}
         {link && (
           <Link className="ledger-link whitespace-nowrap text-ink" href="/experience">
-            The record →
+            Experience record →
           </Link>
         )}
       </p>
@@ -167,7 +167,7 @@ export default function ReleaseHistory() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-paper py-20 md:py-28" aria-label="Release history">
+    <section id="selected-work" ref={sectionRef} className="bg-paper py-20 md:py-28" aria-label="Selected work and production systems">
       <div
         aria-hidden="true"
         className={`tag pointer-events-none fixed bottom-5 left-5 z-[60] hidden items-center gap-2.5 rounded-full bg-ink px-4 py-2.5 text-paper transition-opacity duration-300 md:flex ${
@@ -178,9 +178,9 @@ export default function ReleaseHistory() {
         {spine ?? "···"}
       </div>
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
-        <h2 className="display-1 text-ink">Release history</h2>
-        <p className="measure mt-4 text-ink-2">
-          Every entry is real work, shipped for a client or for myself. Client names stay private. Newest first.
+        <h2 className="display-1 text-ink">Selected work<span className="text-violet">.</span></h2>
+        <p className="measure mt-4 text-lg text-ink-2">
+          Production voice agents, CRM automations, and full-stack software deployed for commercial clients.
         </p>
         <div className="mt-14 md:mt-20">
           {groups.map(([year, list], gi) => {

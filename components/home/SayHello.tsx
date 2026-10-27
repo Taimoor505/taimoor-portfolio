@@ -19,8 +19,8 @@ export default function SayHello() {
                 hello.
               </h2>
               <p className="measure mt-8 text-lg text-on-violet-2">
-                If something in this ledger is close to what you need built, write to me. I’ll tell you honestly whether
-                I’m the right person for it.
+                If something here aligns with what you need built, write to me. I’ll let you know honestly whether
+                I’m the right engineer for it.
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-4">
                 <Link className="btn-label flip bg-paper px-8 py-4 text-ink hover:bg-night hover:text-on-night" href="/contact">

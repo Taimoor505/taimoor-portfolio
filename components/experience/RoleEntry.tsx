@@ -14,7 +14,7 @@ export default function RoleEntry({ role }: { role: Role }) {
         <p className="tag mt-1 text-ink-3">{role.location}</p>
         {role.current && (
           <p className="tag mt-3 flex items-center gap-2 text-ink-2">
-            <span className="lamp" aria-hidden="true" /> current
+            <span className="lamp" aria-hidden="true" /> Current role
           </p>
         )}
       </div>

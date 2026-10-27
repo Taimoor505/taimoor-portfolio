@@ -76,7 +76,7 @@ export default function FlowScreen({ release, variant = "lg" }: { release: Relea
             {variant === "lg" && (
               <div className="fs-toolbar">
                 <span>
-                  <b>{n} steps</b> · {release.version}
+                  <b>{n} steps</b> · {release.kind}
                 </span>
                 <span>{release.date}</span>
               </div>

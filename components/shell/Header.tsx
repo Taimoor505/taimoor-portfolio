@@ -7,7 +7,7 @@ import { profile } from "@/lib/data";
 import "./shell.css";
 
 const links = [
-  { label: "Index", path: "/projects" },
+  { label: "Projects", path: "/projects" },
   { label: "Experience", path: "/experience" },
   { label: "Contact", path: "/contact" },
 ];
@@ -222,18 +222,14 @@ export default function Header() {
               : "border border-transparent bg-transparent px-2 py-4 md:px-5 md:py-5"
           }`}
         >
-          <Link href="/" className="group flex items-center gap-2.5" aria-label={pathname === "/" ? `V2.0, ${profile.name}, home` : `${profile.name}, home`}>
+          <Link href="/" className="group flex items-center gap-2.5" aria-label={`${profile.name}, home`}>
             <span
               aria-hidden="true"
               className="inline-block h-2.5 w-2.5 rotate-45 bg-violet transition-transform duration-300 group-hover:rotate-[135deg]"
             />
-            {pathname === "/" ? (
-              <span className="tag text-violet">V2.0</span>
-            ) : (
-              <span className="text-[16px] font-bold tracking-tight text-ink transition-colors group-hover:text-violet">
-                {profile.name}
-              </span>
-            )}
+            <span className="text-[16px] font-bold tracking-tight text-ink transition-colors group-hover:text-violet">
+              {profile.name}
+            </span>
           </Link>
 
           <DesktopNav pathname={pathname} />
@@ -243,7 +239,7 @@ export default function Header() {
             type="button"
             onClick={() => setOpen((o) => !o)}
             aria-expanded={open}
-            aria-controls="ledger-menu"
+            aria-controls="mobile-menu"
             className="nav-label flip relative z-[75] px-4 py-2 text-ink hover:bg-ink hover:text-paper md:hidden"
           >
             {open ? "Close" : "Menu"}
@@ -254,7 +250,7 @@ export default function Header() {
       {mounted ? (
         <div
           ref={menuRef}
-          id="ledger-menu"
+          id="mobile-menu"
           role="dialog"
           aria-modal="true"
           aria-label="Menu"

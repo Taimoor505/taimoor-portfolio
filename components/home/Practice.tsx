@@ -5,7 +5,7 @@ export default function Practice() {
   const currentOrg = roles.find((r) => r.current)?.org ?? "";
   const stats: [string, string | number][] = [
     ["Writing code since", profile.startedYear],
-    ["Releases shipped", releases.length],
+    ["Systems deployed", releases.length],
     ["Based in", profile.location],
     ["Currently at", currentOrg],
   ];
@@ -27,7 +27,7 @@ export default function Practice() {
                 ))}
               </dl>
               <Link className="btn-label flip flip-solid mt-10 inline-block px-7 py-4" href="/experience">
-                The professional record
+                View full experience →
               </Link>
             </div>
             <div className="md:col-span-7 md:col-start-6">

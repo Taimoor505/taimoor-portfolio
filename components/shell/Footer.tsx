@@ -3,7 +3,7 @@ import { profile } from "@/lib/data";
 import LocalTime from "./LocalTime";
 
 const links = [
-  { label: "Index", path: "/projects" },
+  { label: "Projects", path: "/projects" },
   { label: "Experience", path: "/experience" },
   { label: "Contact", path: "/contact" },
 ];
@@ -17,7 +17,7 @@ export default function Footer() {
       <div className="mx-auto max-w-[1600px] px-5 py-14 md:px-10 md:py-16">
         <div className="flex flex-col justify-between gap-10 md:flex-row md:items-end">
           <div>
-            <p className="tag text-on-night-3">Reach the maintainer</p>
+            <p className="tag text-on-night-3">Get in touch</p>
             <a
               href={`mailto:${profile.email}`}
               className="display-2 mt-3 inline-block break-all text-on-night underline decoration-violet-bright decoration-2 underline-offset-8 transition-colors hover:text-violet-bright"
@@ -58,7 +58,7 @@ export default function Footer() {
           <p className="tag text-on-night-3">
             © {year} {profile.name}
           </p>
-          <p className="tag text-on-night-3">Portfolio v2.0.0 · built with Next.js · shipped from Lahore</p>
+          <p className="tag text-on-night-3">Built with Next.js &amp; Tailwind CSS · Remote from Lahore</p>
         </div>
       </div>
     </footer>

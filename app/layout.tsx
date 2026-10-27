@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque } from "next/font/google";
+import { Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/shell/Header";
 import Footer from "@/components/shell/Footer";
@@ -7,7 +7,6 @@ import ScrollTop from "@/components/shell/ScrollTop";
 import { SITE_URL } from "@/lib/site";
 
 // Self-hosted and preloaded by Next, with a size-matched fallback (no layout shift).
-// wght is included automatically for variable fonts; only extra axes are listed.
 const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
   axes: ["opsz", "wdth"],
@@ -15,10 +14,16 @@ const bricolage = Bricolage_Grotesque({
   display: "swap",
 });
 
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: { default: "Taimoor Asif, Full-stack Software Engineer", template: "%s · Taimoor Asif" },
-  description: "Full-stack software engineer building production AI agents, voice agents and business automations in Python and Next.js. Remote from Lahore.",
+  title: { default: "Taimoor Asif · Full-stack Software Engineer", template: "%s · Taimoor Asif" },
+  description: "Full-stack software engineer portfolio showcasing production AI agents, voice AI agents, CRM automations, and web applications.",
 };
 
 export const viewport: Viewport = {
@@ -29,7 +34,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${bricolage.variable} antialiased`}>
+      <body className={`${bricolage.variable} ${jetbrainsMono.variable} antialiased`}>
         <a
           href="#main"
           className="tag sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[90] focus:bg-ink focus:px-4 focus:py-3 focus:text-paper"

@@ -1,16 +1,14 @@
 import Link from "next/link";
-import { wingCount, wings, type WingId } from "@/lib/data";
-import "@/components/shell/shell.css";
+import { wings, wingCount, type WingId } from "@/lib/data";
 
-// One simple line icon per wing (replaces tiny screenshots, which are unreadable at card size).
-function WingIcon({ id }: { id: WingId }) {
+function DomainIcon({ id }: { id: WingId }) {
   const common = {
-    width: 22,
-    height: 22,
+    width: 20,
+    height: 20,
     viewBox: "0 0 24 24",
     fill: "none",
     stroke: "currentColor",
-    strokeWidth: 1.75,
+    strokeWidth: 2,
     strokeLinecap: "round" as const,
     strokeLinejoin: "round" as const,
   };
@@ -48,72 +46,72 @@ function WingIcon({ id }: { id: WingId }) {
   }
 }
 
-// Colour treatment per card position, copied from the reference (paper-deep, night, violet, outlined).
-const looks = [
-  { card: "bg-paper-deep text-ink", num: "text-ink", sub: "text-ink-2", enter: "text-ink-2 group-hover:text-ink", chip: "border-line-strong" },
-  {
-    card: "on-dark bg-night text-on-night",
-    num: "text-on-night",
-    sub: "text-on-night-2",
-    enter: "text-on-night-2 group-hover:text-on-night",
-    chip: "border-line-night",
-  },
-  {
-    card: "on-dark bg-violet-sheet text-on-violet",
-    num: "text-on-violet",
-    sub: "text-on-violet-2",
-    enter: "text-on-violet-2 group-hover:text-on-violet",
-    chip: "border-on-violet-2/40",
-  },
-  {
-    card: "border border-line-strong bg-paper text-ink",
-    num: "text-ink",
-    sub: "text-ink-2",
-    enter: "text-ink-2 group-hover:text-ink",
-    chip: "border-line-strong",
-  },
-];
+const domainTags: Record<WingId, string[]> = {
+  voice: ["Retell AI", "GoHighLevel Voice", "Twilio", "ElevenLabs", "Speech-to-Text"],
+  automation: ["n8n", "GoHighLevel", "Make.com", "Stripe API", "Webhooks & Retries"],
+  agents: ["OpenAI & Claude APIs", "RAG Pipelines", "Prompt Engineering", "Structured JSON"],
+  engineering: ["Next.js", "TypeScript", "Python / FastAPI", "Prisma", "PostgreSQL", "YOLO"],
+};
 
 export default function Wings() {
   return (
-    <section className="bg-paper pb-14 pt-16 md:pb-20 md:pt-24" aria-label="The four wings">
+    <section id="capabilities" aria-labelledby="capabilities-title" className="bg-paper pb-20 pt-16 md:pb-28 md:pt-20">
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
         <div className="flex flex-wrap items-baseline justify-between gap-4">
-          <h2 className="display-1 text-ink">Four wings</h2>
-          <p className="tag text-ink-3">One practice · pick a door</p>
+          <div>
+            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-violet">
+              Core Engineering Capabilities
+            </span>
+            <h2 id="capabilities-title" className="display-1 mt-2 text-ink">
+              What I build<span className="text-violet">.</span>
+            </h2>
+          </div>
+          <p className="font-mono text-xs text-ink-3">End-to-end operational systems, not isolated POCs</p>
         </div>
-        <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 md:gap-4">
-          {wings.map((w, i) => {
-            const look = looks[i % looks.length];
+
+        {/* Cohesive, unified Prussian dark cards */}
+        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {wings.map((w, idx) => {
             const count = wingCount(w.id);
+            const tags = domainTags[w.id] ?? [];
             return (
               <Link
                 key={w.id}
-                className={`wing-card sheet group flex flex-col p-6 transition-transform duration-300 ease-out hover:-translate-y-1.5 md:p-7 ${look.card}`}
                 href={`/projects?wing=${w.id}`}
+                className="group relative flex flex-col justify-between rounded-2xl border border-line-night bg-night p-6 text-on-night transition-all duration-300 ease-out hover:-translate-y-1.5 hover:border-violet-bright/50 hover:shadow-[0_20px_40px_-15px_rgba(20,33,61,0.5)] md:p-7"
               >
-                <div className="flex items-start justify-between gap-4">
-                  <p className={`numeral text-[clamp(2.8rem,2rem+2.4vw,4.5rem)] ${look.num}`}>{String(i + 1).padStart(2, "0")}</p>
-                  <span
-                    aria-hidden="true"
-                    className={`mt-1 flex h-11 w-11 items-center justify-center rounded-full border ${look.chip} ${look.num}`}
-                  >
-                    <WingIcon id={w.id} />
-                  </span>
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-line-night bg-night-2/70 text-violet-bright">
+                      <DomainIcon id={w.id} />
+                    </span>
+                    <span className="font-mono text-xs text-on-night-3">0{idx + 1}</span>
+                  </div>
+
+                  <h3 className="display-2 mt-6 text-on-night transition-colors group-hover:text-violet-bright">
+                    {w.name}
+                  </h3>
+
+                  <p className="mt-3 text-sm leading-relaxed text-on-night-2">{w.blurb}</p>
+
+                  <div className="mt-6 flex flex-wrap gap-1.5 border-t border-line-night/70 pt-5">
+                    {tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-md border border-line-night bg-night-2/40 px-2 py-0.5 font-mono text-[11px] text-on-night-2"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <div className="mt-5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                  <h3 className="display-2">{w.name}</h3>
-                  <span className={`tag whitespace-nowrap ${look.sub}`}>
-                    {count} release{count === 1 ? "" : "s"}
-                  </span>
-                </div>
-                <p className={`tag mt-2 ${look.sub}`}>{w.blurb}</p>
-                <p className={`nav-label mt-6 flex items-center gap-2 md:mt-8 ${look.enter}`}>
-                  Enter
-                  <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1.5">
+
+                <div className="mt-8 flex items-center justify-between border-t border-line-night/70 pt-4 font-mono text-xs text-violet-bright">
+                  <span>Explore {count} {count === 1 ? "project" : "projects"}</span>
+                  <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
                     →
                   </span>
-                </p>
+                </div>
               </Link>
             );
           })}

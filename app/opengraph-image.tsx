@@ -45,7 +45,7 @@ export default function OpengraphImage() {
             color: "#8f98ad",
           }}
         >
-          <span>{`${releases.length} releases`}</span>
+          <span>{`${releases.length} Production Systems`}</span>
           <span>{`${profile.locationLong} · Remote`}</span>
         </div>
       </div>

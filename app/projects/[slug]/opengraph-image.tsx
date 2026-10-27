@@ -27,8 +27,8 @@ export default async function Image({ params }: { params: Promise<{ slug: string
       >
         <div style={{ display: "flex", alignItems: "center", gap: 18, fontSize: 24, letterSpacing: 3, textTransform: "uppercase" }}>
           <div style={{ width: 18, height: 18, background: "#fca311", transform: "rotate(45deg)" }} />
-          <span style={{ color: "#fca311" }}>{r.version}</span>
-          <span style={{ color: "#8f98ad" }}>{r.kind}</span>
+          <span style={{ color: "#fca311" }}>{r.kind}</span>
+          <span style={{ color: "#8f98ad" }}>{r.date}</span>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>

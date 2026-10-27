@@ -4,15 +4,12 @@ import { pageMeta } from "@/lib/site";
 import ReleaseIndex, { ReleaseIndexView } from "@/components/projects/ReleaseIndex";
 
 export const metadata = pageMeta({
-  title: "Index",
-  description: "Every system Taimoor Asif has built: voice AI agents, CRM and revenue automation, AI agents and engineering work, each with a case study.",
+  title: "Projects",
+  description: "Production systems built by Taimoor Asif: voice AI agents, CRM and revenue automation, AI workflows, and full-stack software engineering.",
   path: "/projects",
 });
 
 const firstYear = Math.min(...releases.map((r) => r.year));
-
-const NUMBER_WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
-const wingWord = NUMBER_WORDS[wings.length] ?? String(wings.length);
 
 type Props = { searchParams: Promise<{ [key: string]: string | string[] | undefined }> };
 
@@ -24,10 +21,9 @@ export default async function ProjectsPage({ searchParams }: Props) {
   return (
     <section className="bg-paper pb-24 pt-28 md:pb-32 md:pt-36">
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
-        <h1 className="mast text-ink">Index</h1>
-        <p className="measure mt-6 text-ink-2">
-          Every release in the ledger, {releases.length} shipped since {firstYear}, across {wingWord}{" "}
-          {wings.length === 1 ? "wing" : "wings"}. Pick a wing, open any entry for the full record.
+        <h1 className="mast text-ink">Projects<span className="text-violet">.</span></h1>
+        <p className="measure mt-6 text-lg text-ink-2">
+          Production systems, voice agents, and client automations built since {firstYear}. Filter by domain to explore the technical architecture, stack, and measurable business outcomes.
         </p>
         <div className="mt-12 md:mt-16">
           <Suspense fallback={<ReleaseIndexView active={initial} />}>
