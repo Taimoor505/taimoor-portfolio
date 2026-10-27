@@ -25,7 +25,7 @@ export default function Footer() {
               {profile.email}
             </a>
             <p className="tag mt-4 text-on-night-2">
-              {profile.locationLong} · <LocalTime />
+              {profile.locationLong}, <LocalTime />
             </p>
           </div>
           <div className="flex flex-wrap gap-x-8 gap-y-3">
@@ -58,7 +58,7 @@ export default function Footer() {
           <p className="tag text-on-night-3">
             © {year} {profile.name}
           </p>
-          <p className="tag text-on-night-3">Built with Next.js &amp; Tailwind CSS · Remote from Lahore</p>
+          <p className="tag text-on-night-3">Built with Next.js and Tailwind CSS (Remote from Lahore)</p>
         </div>
       </div>
     </footer>

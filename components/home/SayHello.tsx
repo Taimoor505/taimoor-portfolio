@@ -48,7 +48,7 @@ export default function SayHello() {
                 <dt className="tag text-on-violet-2">Based in</dt>
                 <dd className="mt-1.5 font-medium text-on-violet">
                   <span>
-                    {profile.location} · <LocalTime />
+                    {profile.location}, <LocalTime />
                   </span>
                 </dd>
               </div>

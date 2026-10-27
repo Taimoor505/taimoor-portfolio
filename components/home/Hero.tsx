@@ -26,7 +26,7 @@ export default function Hero() {
             </h1>
 
             <p className="measure mt-6 text-lg leading-relaxed text-ink-2">
-              I’m {profile.name}—a full-stack software engineer based in Lahore. I build reliable voice AI agents, resilient CRM pipelines, and internal tools for growing teams and US businesses.
+              I am {profile.name}, a full-stack software engineer based in Lahore. I build reliable voice AI agents, resilient CRM pipelines, and internal tools for growing teams and US businesses.
             </p>
 
             <div className="mt-9 flex flex-wrap items-center gap-4">
@@ -53,10 +53,10 @@ export default function Hero() {
               </a>
             </div>
 
-            <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-line-strong pt-6 font-mono text-xs text-ink-3">
+            <div className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-line-strong pt-6 font-mono text-xs text-ink-3">
               <span>{profile.currently}</span>
-              <span>•</span>
-              <span>Available for remote engineering roles &amp; freelance builds</span>
+              <span className="text-ink-3/40">/</span>
+              <span>Available for remote engineering roles and freelance builds</span>
             </div>
           </div>
 
@@ -68,11 +68,11 @@ export default function Hero() {
                 <div className="flex items-center gap-2.5">
                   <span className="h-2.5 w-2.5 rounded-full bg-violet-bright" aria-hidden="true" />
                   <span className="font-mono text-xs font-semibold uppercase tracking-wider text-on-night">
-                    System Architecture · Voice Ordering
+                    System Architecture / Voice Ordering
                   </span>
                 </div>
                 <span className="font-mono text-[11px] font-medium text-live">
-                  ● Production Deployed
+                  [Production Deployed]
                 </span>
               </div>
 
@@ -107,13 +107,13 @@ export default function Hero() {
                 </div>
                 <div className="mt-3 space-y-2 text-xs leading-relaxed">
                   <p className="text-on-night-2">
-                    <strong className="font-mono text-violet-bright">Agent:</strong> &ldquo;Thanks for calling! Is this for pickup or delivery?&rdquo;
+                    <strong className="font-mono text-violet-bright">Agent:</strong> "Thanks for calling! Is this for pickup or delivery?"
                   </p>
                   <p className="text-on-night">
-                    <strong className="font-mono text-on-night-3">Caller:</strong> &ldquo;Pickup. Two large margherita pizzas and garlic bread.&rdquo;
+                    <strong className="font-mono text-on-night-3">Caller:</strong> "Pickup. Two large margherita pizzas and garlic bread."
                   </p>
                   <p className="text-on-night-2">
-                    <strong className="font-mono text-violet-bright">Agent:</strong> &ldquo;Got it. Total is $31.40. I&rsquo;ve texted you a secure Stripe payment link.&rdquo;
+                    <strong className="font-mono text-violet-bright">Agent:</strong> "Got it. Total is $31.40. I have texted you a secure Stripe payment link."
                   </p>
                 </div>
               </div>

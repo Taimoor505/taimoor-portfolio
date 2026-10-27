@@ -60,7 +60,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <dt className="tag text-ink-3">Location</dt>
-                <dd className="mt-1.5 text-ink">{`${profile.locationLong} · ${profile.utc}`}</dd>
+                <dd className="mt-1.5 text-ink">{`${profile.locationLong} (${profile.utc})`}</dd>
               </div>
             </dl>
           </div>

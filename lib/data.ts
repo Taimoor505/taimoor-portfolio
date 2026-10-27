@@ -604,7 +604,7 @@ export const profile = {
 export type Area = { title: string; text: string };
 export type Role = {
   slug: string;
-  period: string; // "Feb 2026 — Present" style is avoided; use "Feb 2026 to now"
+  period: string; // "Feb 2026 to Present" style is avoided; use "Feb 2026 to now"
   duration: string;
   type: string;
   location: string;

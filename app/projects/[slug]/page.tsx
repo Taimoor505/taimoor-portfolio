@@ -55,9 +55,9 @@ export default async function ReleasePage({ params }: Props) {
         <header className="mt-8 md:mt-10">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-xs">
             <span className="font-semibold uppercase tracking-wider text-violet">{release.kind}</span>
-            <span className="text-ink-3">•</span>
+            <span className="text-ink-3/40">/</span>
             <span className="text-ink-2">{release.dateLong}</span>
-            <span className="text-ink-3">•</span>
+            <span className="text-ink-3/40">/</span>
             <span className="text-ink-3">{release.context}</span>
             {release.status && (
               <span className="rounded-full border border-violet/40 bg-violet/10 px-2.5 py-0.5 text-[11px] font-medium text-violet">
@@ -94,7 +94,7 @@ export default async function ReleasePage({ params }: Props) {
               System Architecture Flow
             </span>
             <span className="font-mono text-xs text-ink-3">
-              {release.flow.length} Steps · Trigger to Execution
+              {release.flow.length} Steps / Trigger to Execution
             </span>
           </div>
           <div className="mount relative aspect-[16/9] md:hidden">
@@ -113,7 +113,7 @@ export default async function ReleasePage({ params }: Props) {
                 Illustrative Voice Agent Conversation
               </span>
               <span className="font-mono text-[11px] text-on-night-3">
-                Simulated dialogue for demonstration · Real client calls are confidential
+                Simulated dialogue for demonstration / Real client calls are confidential
               </span>
             </div>
             <div className="mt-5 space-y-3">
@@ -123,7 +123,7 @@ export default async function ReleasePage({ params }: Props) {
                     {line.who}:
                   </span>
                   <span className={line.who === "agent" ? "text-on-night-2" : "text-on-night"}>
-                    &ldquo;{line.text}&rdquo;
+                    &quot;{line.text}&quot;
                   </span>
                 </div>
               ))}
@@ -169,9 +169,9 @@ export default async function ReleasePage({ params }: Props) {
                 Engineering &amp; Reliability Safeguards
               </h3>
               <ul className="mt-3 space-y-2 text-sm leading-relaxed text-ink-2">
-                <li>• <strong>Idempotency &amp; Deduplication:</strong> Automated locks and dedupe keys prevent duplicate dials or redundant database writes.</li>
-                <li>• <strong>Failure Isolation:</strong> Non-blocking webhook retries with alerting fallback ensure zero missed customer events.</li>
-                <li>• <strong>Human-in-the-Loop Handoff:</strong> Explicit escalation triggers route complex inquiries to team members with complete context.</li>
+                <li><strong>Idempotency and Deduplication:</strong> Automated locks and dedupe keys prevent duplicate dials or redundant database writes.</li>
+                <li><strong>Failure Isolation:</strong> Non-blocking webhook retries with alerting fallback ensure zero missed customer events.</li>
+                <li><strong>Human-in-the-Loop Handoff:</strong> Explicit escalation triggers route complex inquiries to team members with complete context.</li>
               </ul>
             </div>
 
