@@ -1,5 +1,4 @@
 import Link from "next/link";
-import LocalTime from "@/components/shell/LocalTime";
 import { profile } from "@/lib/data";
 import "@/components/shell/shell.css";
 
@@ -19,12 +18,11 @@ export default function SayHello() {
                 hello.
               </h2>
               <p className="measure mt-8 text-lg text-on-violet-2">
-                If something here aligns with what you need built, write to me. I’ll let you know honestly whether
-                I’m the right engineer for it.
+                Have a workflow that eats hours every week? Tell me what it is, which tools are involved, and your timeline. I will let you know honestly whether I am the right fit.
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-4">
                 <Link className="btn-label flip bg-paper px-8 py-4 text-ink hover:bg-night hover:text-on-night" href="/contact">
-                  Use the contact form
+                  Start a project
                 </Link>
                 <a
                   href={`mailto:${profile.email}`}
@@ -45,11 +43,9 @@ export default function SayHello() {
                 </dd>
               </div>
               <div className="border-t border-on-violet-2/35 py-5">
-                <dt className="tag text-on-violet-2">Based in</dt>
+                <dt className="tag text-on-violet-2">Response</dt>
                 <dd className="mt-1.5 font-medium text-on-violet">
-                  <span>
-                    {profile.location}, <LocalTime />
-                  </span>
+                  <span>Typical reply time: within 24 hours</span>
                 </dd>
               </div>
               <div className="border-t border-on-violet-2/35 py-5">

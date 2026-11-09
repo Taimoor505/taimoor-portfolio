@@ -18,7 +18,7 @@ export default function Hero() {
           <div className="flex flex-col lg:col-span-6 lg:pt-2">
             <div className="flex items-center gap-2.5 font-mono text-xs font-semibold uppercase tracking-wider text-ink-2">
               <span className="lamp" aria-hidden="true" />
-              <span>Full-Stack &amp; AI Automation Engineer · {profile.location}</span>
+              <span>AI Automation Engineer</span>
             </div>
 
             <h1 className="mast mt-6 text-balance text-ink" style={{ fontSize: "clamp(2.4rem, 1.4rem + 3.8vw, 4.6rem)" }}>
@@ -26,7 +26,7 @@ export default function Hero() {
             </h1>
 
             <p className="measure mt-6 text-lg leading-relaxed text-ink-2">
-              I am {profile.name}, a full-stack software engineer based in Lahore. I build reliable voice AI agents, resilient CRM pipelines, and internal tools for growing teams and US businesses.
+              I am {profile.name}, an AI automation engineer. I build reliable voice AI agents, resilient CRM pipelines, and internal tools for growing teams and businesses.
             </p>
 
             <div className="mt-9 flex flex-wrap items-center gap-4">
@@ -40,7 +40,7 @@ export default function Hero() {
                 href="/contact"
                 className="btn-label flip flip-outline px-7 py-4"
               >
-                Get in touch
+                Start a project
               </Link>
               <a
                 href={profile.resume}
@@ -56,7 +56,7 @@ export default function Hero() {
             <div className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-line-strong pt-6 font-mono text-xs text-ink-3">
               <span>{profile.currently}</span>
               <span className="text-ink-3/40">/</span>
-              <span>Available for remote engineering roles and freelance builds</span>
+              <span>Available for freelance automation and voice AI projects</span>
             </div>
           </div>
 

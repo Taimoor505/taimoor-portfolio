@@ -22,8 +22,8 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: { default: "Taimoor Asif · Full-stack Software Engineer", template: "%s · Taimoor Asif" },
-  description: "Full-stack software engineer portfolio showcasing production AI agents, voice AI agents, CRM automations, and web applications.",
+  title: { default: "Taimoor Asif · AI Automation Engineer", template: "%s · Taimoor Asif" },
+  description: "AI automation engineer building production voice AI agents, CRM automations, and AI workflows for businesses.",
 };
 
 export const viewport: Viewport = {

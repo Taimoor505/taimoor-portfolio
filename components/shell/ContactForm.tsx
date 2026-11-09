@@ -183,7 +183,7 @@ export default function ContactForm() {
             value={fields.subject}
             onChange={onChange}
             className={inputCls}
-            placeholder="Role, automation project, or idea"
+            placeholder="Workflow to automate, tools involved, or timeline"
             disabled={submitting}
           />
         </Field>
@@ -199,7 +199,7 @@ export default function ContactForm() {
             value={fields.message}
             onChange={onChange}
             className={`${inputCls} resize-none`}
-            placeholder="Describe what you need built, system constraints, or timelines..."
+            placeholder="Tell me what eats hours every week, which tools are involved (e.g. GoHighLevel, n8n, Stripe), and your timeline..."
             disabled={submitting}
           />
         </Field>
@@ -210,7 +210,7 @@ export default function ContactForm() {
           disabled={submitting}
           className="btn-label flip flip-violet px-8 py-4 disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {submitting ? "Sending message..." : "Send message →"}
+          {submitting ? "Sending..." : "Start a project →"}
         </button>
         <CopyEmail location="contact_form" className="btn-label flip flip-outline px-6 py-4" />
         <a href={`mailto:${profile.email}`} className="tag ledger-link text-ink-2">

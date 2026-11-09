@@ -6,7 +6,7 @@ export default function Practice() {
   const stats: [string, string | number][] = [
     ["Writing code since", profile.startedYear],
     ["Systems deployed", releases.length],
-    ["Based in", profile.location],
+    ["Typical reply time", "Within 24h"],
     ["Currently at", currentOrg],
   ];
 

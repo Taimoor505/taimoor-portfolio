@@ -51,7 +51,7 @@ export default function ExperiencePage() {
 
           <div className="mt-16 flex flex-wrap items-center gap-4 md:mt-24">
             <Link className="btn-label flip flip-violet px-8 py-4" href="/contact">
-              Work with me
+              Start a project
             </Link>
             <a
               href={profile.resume}

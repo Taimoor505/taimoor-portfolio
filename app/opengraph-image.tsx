@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { profile, releases } from "@/lib/data";
 
-export const alt = "Taimoor Asif, Full-stack Software Engineer";
+export const alt = "Taimoor Asif, AI Automation Engineer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -46,7 +46,7 @@ export default function OpengraphImage() {
           }}
         >
           <span>{`${releases.length} Production Systems`}</span>
-          <span>{`${profile.locationLong} · Remote`}</span>
+          <span>Available Worldwide</span>
         </div>
       </div>
     ),

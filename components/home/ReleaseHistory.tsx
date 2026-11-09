@@ -14,10 +14,6 @@ function buildGroups(): [number, Release[]][] {
 }
 const hasStartYear = years.some((y) => y.year === 2023);
 
-// Full cards for releases with a measured result or a live status; the rest collapse to compact rows,
-// mirroring how the reference collapses its less notable entries.
-const isFull = (r: Release) => Boolean(r.result || r.status);
-
 function FullCard({ r }: { r: Release }) {
   const href = `/projects/${r.slug}`;
   return (
@@ -41,6 +37,12 @@ function FullCard({ r }: { r: Release }) {
               <span key={s}>{s}</span>
             ))}
           </p>
+          {r.result && (
+            <p className="mt-4 font-mono text-xs text-ink-2">
+              <span className="font-semibold text-violet">{r.result.value}</span>{" "}
+              <span>{r.result.label}</span>
+            </p>
+          )}
           <div className="mt-6 md:mt-auto md:pt-6">
             <Link className="btn-label flip flip-outline inline-block px-6 py-3.5" href={href}>
               View case study →
@@ -55,28 +57,6 @@ function FullCard({ r }: { r: Release }) {
           </Link>
         </div>
       </div>
-    </li>
-  );
-}
-
-function CompactRow({ r }: { r: Release }) {
-  return (
-    <li className="relative border-b border-line" data-spine={r.name}>
-      <Link
-        className="group flex flex-wrap items-baseline gap-x-5 gap-y-1 rounded-2xl py-5 pl-6 pr-4 transition-colors duration-200 hover:bg-ink md:pl-10"
-        href={`/projects/${r.slug}`}
-      >
-        <span
-          className="absolute left-0 top-1/2 h-px w-4 -translate-y-1/2 bg-ink transition-colors group-hover:bg-paper md:w-6"
-          aria-hidden="true"
-        />
-        <span className="font-mono text-xs font-semibold text-violet transition-colors group-hover:text-violet-bright">{r.kind}</span>
-        <span className="display-2 !text-[1.15rem] text-ink transition-colors group-hover:text-paper md:!text-[1.35rem]">
-          {r.name}
-        </span>
-        <span className="hidden font-mono text-xs text-ink-3 transition-colors group-hover:text-on-night-2 sm:inline">{r.context}</span>
-        <span className="ml-auto font-mono text-xs text-ink-2 transition-colors group-hover:text-paper">View →</span>
-      </Link>
     </li>
   );
 }
@@ -195,7 +175,9 @@ export default function ReleaseHistory() {
                   </div>
                 </div>
                 <ul className="border-t border-line-strong md:col-span-9">
-                  {list.map((r) => (isFull(r) ? <FullCard key={r.slug} r={r} /> : <CompactRow key={r.slug} r={r} />))}
+                  {list.map((r) => (
+                    <FullCard key={r.slug} r={r} />
+                  ))}
                   {meta?.milestones.map((m) => (
                     <Milestone key={m.date + m.text} date={m.date} text={m.text} current={m.current} />
                   ))}

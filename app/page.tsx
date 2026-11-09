@@ -7,9 +7,9 @@ import Practice from "@/components/home/Practice";
 import SayHello from "@/components/home/SayHello";
 
 export const metadata = pageMeta({
-  title: "Taimoor Asif · Full-stack Software Engineer",
+  title: "Taimoor Asif · AI Automation Engineer",
   description:
-    "Full-stack software engineer portfolio showcasing production AI agents, voice AI agents, CRM automations, and web applications.",
+    "AI automation engineer building production voice AI agents, CRM automations, and AI workflows for businesses.",
   path: "/",
 });
 

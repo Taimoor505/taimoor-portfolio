@@ -4,7 +4,7 @@ import ContactForm from "@/components/shell/ContactForm";
 
 export const metadata = pageMeta({
   title: "Contact",
-  description: "Get in touch with Taimoor Asif, full-stack software engineer in Lahore, about full-time remote engineering roles or freelance automation and voice AI projects.",
+  description: "Get in touch with Taimoor Asif, AI automation engineer, about freelance automation and voice AI projects.",
   path: "/contact",
 });
 
@@ -20,7 +20,7 @@ export default function ContactPage() {
         <div className="mt-14 grid grid-cols-1 gap-14 md:mt-20 md:grid-cols-12 md:gap-10">
           <div className="md:col-span-4">
             <p className="measure text-ink-2">
-              Have an engineering role, an automation bottleneck, or an AI voice workflow to build? Send a message below or email directly. I usually reply within 24 hours.
+              Have a workflow that eats hours every week? Tell me what it is, which tools are involved, and your timeline. I will let you know honestly whether I am the right fit.
             </p>
             <dl className="mt-10 space-y-7 border-t border-line-strong pt-8">
               <div>
@@ -59,8 +59,8 @@ export default function ContactPage() {
                 </dd>
               </div>
               <div>
-                <dt className="tag text-ink-3">Location</dt>
-                <dd className="mt-1.5 text-ink">{`${profile.locationLong} (${profile.utc})`}</dd>
+                <dt className="tag text-ink-3">Response</dt>
+                <dd className="mt-1.5 text-ink">Typical reply time: within 24 hours</dd>
               </div>
             </dl>
           </div>
